@@ -9,18 +9,20 @@ I’ve forked the project and containerised it, as running software in container
 ⚠️ **Note: The original project has not been updated in several years. Use at your own risk.** ⚠️
 
 ## 🚀 Getting Started
-1.  Configure storage
+Copy the example configuration files, update them for your setup, and start the container.
 
-Copy storage.json.example to storage.json, then update the path to the directory where you want to save recordings:
+1. Create storage configuration
+
+Copy storage.json.example to storage.json and set the directory where recordings should be saved:
 ```json
 {
     "rootpath": "/home/username/recordings/"
 }
 ```
 
-2. Configure cameras
+2. Create camera configuration
 
-Copy cameras.json.example to cameras.json, then add the RTSP stream URL(s) for your camera(s). Repeat the block below for each additional camera:
+Copy cameras.json.example to cameras.json and add the RTSP URL(s) for your camera(s). Repeat for each camera:
 ```json
 [
     {
@@ -34,20 +36,20 @@ Copy cameras.json.example to cameras.json, then add the RTSP stream URL(s) for y
 ]
 ```
 
-3. Build the container image
+3. Start the container
 
-From the project directory, run:
-```shell
-docker build -t simple-nvr .
-```
-
-4. Start the container
-
-Run the container with your configuration mounted:
+Run the container with your configuration files mounted:
 ```shell
 docker run -d \
   -v $(pwd)/cameras.json:/opt/app/cameras.json:ro \
   -v $(pwd)/storage.json:/opt/app/storage.json:ro \
   -p 3000:3000 \
+  ghcr.io/n3ddu8/simple-nvr:latest
 ```
+
+The container will start recording immediately using the settings you provided.
+
+4. Access the web interface
+
+Visit http://localhost:3000 to view your camera feeds.
 
