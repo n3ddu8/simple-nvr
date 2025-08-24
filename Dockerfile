@@ -1,13 +1,16 @@
 FROM mcr.microsoft.com/devcontainers/javascript-node
 
-RUN apt update && \
-    apt install ffmpeg -y && \
-    npm install -g npm@latest && \
-    npm install -g pm2
-
 WORKDIR /opt/app
 
-COPY simple-nvr .
+COPY simple-nvr/package*.json ./
+
+# Install OS and npm dependencies
+RUN apt update && \
+    apt install -y ffmpeg && \
+    npm install -g npm@latest pm2 && \
+    npm install
+
+COPY simple-nvr ./
 
 EXPOSE 3000
 
