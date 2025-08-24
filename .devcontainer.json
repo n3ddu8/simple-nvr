@@ -1,0 +1,7 @@
+{
+  "name": "simple-nvr",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node",
+  "features": {
+    "ghcr.io/devcontainers/features/nix:1": {}
+  }
+}
