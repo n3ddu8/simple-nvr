@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/javascript-node
 
 RUN apt update && \
-    apt install ffmpeg && \
+    apt install ffmpeg -y && \
     npm install -g npm@latest && \
     npm install -g pm2
 
